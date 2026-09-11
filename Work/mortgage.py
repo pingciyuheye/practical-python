@@ -11,20 +11,23 @@ total_month = 0
 extra_payment_start_month = 61
 extra_payment_end_month = 108
 
-while principal > 0:
+while principal > 2684.11:
     if (extra_payment_start_month - 1 <= total_month <= extra_payment_end_month - 1):
       total_paid = total_paid + payment + extra_payment
       total_month = total_month + 1
       principal = principal * (1+rate/12) - payment - extra_payment
       print(total_month,total_paid,principal)
-
     else:
       total_paid = total_paid + payment
       total_month = total_month + 1
       principal = principal * (1+rate/12) - payment
       print(total_month,total_paid,principal)
-    
-      
+
+total_month = total_month + 1
+total_paid = total_paid + principal * (1+rate/12) # Interest still accrues in the final month.
+principal = principal - principal
+
+print(total_month,total_paid,principal)     
 print('Total paid', total_paid)
 print('Total month', total_month)
 
