@@ -1,11 +1,12 @@
 # report.py
 #
-# Exercise 2.4
+# Exercise 2.4 & 2.5
 import csv
+
 
 def read_portfolio(filename):
     """
-    Computes the total cost (share*price) of a portfolio file
+    Read a portfolio file into a list of dicts with keys name, shares and price.
     """
     portfolio = []
     with open(filename, 'rt') as f:
@@ -13,8 +14,11 @@ def read_portfolio(filename):
         headers = next(rows)
         for row in rows:
             nshares = int(row[1])
-            price = float(row[2])
-            holding = (row[0], nshares, price)
+            price = float(row[2])    
+            holding = {
+                'name' : row[0],
+                'shares' : nshares,
+                'price' : price
+            }
             portfolio.append(holding)
-        print(portfolio)
     return portfolio
