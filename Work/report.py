@@ -1,6 +1,6 @@
 # report.py
 #
-# Exercise 2.4 & 2.5
+# Exercise 2.4 & 2.5 & 2.6 & 2.7
 import csv
 
 
@@ -22,3 +22,19 @@ def read_portfolio(filename):
             }
             portfolio.append(holding)
     return portfolio
+
+def read_prices(filename):
+    with open(filename, 'rt') as d:
+        rows = csv.reader(d)
+        prices = {}
+        for row in rows:
+            """
+            try: 
+                prices[row[0]] = float(row[1])
+            except IndexError:
+                print("Couldn't load", row)
+            """
+            if len(row) > 0:
+                prices[row[0]] = float(row[1])
+
+    return prices
