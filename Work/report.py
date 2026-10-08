@@ -1,6 +1,6 @@
 # report.py
 #
-# Exercise 2.4 & 2.5 & 2.6 & 2.7 & 2.9
+# Exercise 2.4 & 2.5 & 2.6 & 2.7 & 2.9 & 2,10 & 2.11
 import csv
 
 
@@ -71,5 +71,6 @@ def make_report(portfolio, now_prices):
         all_change.append(per_stock)
     return all_change
 
-
-
+all_change = make_report(portfolio, now_prices)
+for name, shares, price, change in all_change:
+    print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
