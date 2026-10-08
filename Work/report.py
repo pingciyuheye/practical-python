@@ -1,6 +1,6 @@
 # report.py
 #
-# Exercise 2.4 & 2.5 & 2.6 & 2.7 & 2.9 & 2,10 & 2.11
+# Exercise 2.4 & 2.5 & 2.6 & 2.7 & 2.9 & 2,10 & 2.11 & 2.12
 import csv
 
 
@@ -72,5 +72,26 @@ def make_report(portfolio, now_prices):
     return all_change
 
 all_change = make_report(portfolio, now_prices)
+
+headers = ('Name', 'Shares', 'Price', 'Change')
+print_headers = ''
+separator = '-'*10
+separators = ''
+for h in headers:
+    if h != 'Change':
+       h = f'{h:>10s}{' '}'
+       print_headers += h
+       separator = f'{separator:10s}'
+       separators += separator
+       separators += ' '
+    else:
+        h = f'{h:>10s}'
+        print_headers += h
+        separator = f'{separator:10s}'
+        separators += separator
+
+print(print_headers)
+print(separators)
+
 for name, shares, price, change in all_change:
     print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
