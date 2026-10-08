@@ -94,4 +94,5 @@ print(print_headers)
 print(separators)
 
 for name, shares, price, change in all_change:
-    print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
+    s = f'${price:.2f}'
+    print(f'{name:>10s} {shares:>10d} {s:>10s} {change:>10.2f}')
