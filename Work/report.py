@@ -1,6 +1,6 @@
 # report.py
 #
-# Exercise 2.4 & 2.5 & 2.6 & 2.7 & 2.9 & 2,10 & 2.11 & 2.12
+# Exercise 2.4 & 2.5 & 2.6 & 2.7 & 2.9 & 2,10 & 2.11 & 2.12 & 2.16
 import csv
 
 
@@ -12,11 +12,13 @@ def read_portfolio(filename):
     with open(filename, 'rt') as f:
         rows = csv.reader(f)
         headers = next(rows)
-        for row in rows:
-            nshares = int(row[1])
-            price = float(row[2]) 
+        for i,row in enumerate(rows):
+            record = dict(zip(headers, row))
+            name = record['name']
+            nshares = int(record['shares'])
+            price = float(record['price']) 
             holding = {
-                'name' : row[0],
+                'name' : name,
                 'shares' : nshares,
                 'price' : price
             }
@@ -30,9 +32,10 @@ with open('Data/portfolio.csv', 'rt') as f:
         rows = csv.reader(f)
         headers = next(rows)
         total_buy_in = 0
-        for row in rows:
-            nshares = int(row[1])
-            price = float(row[2]) 
+        for i, row in enumerate(rows, start = 1):
+            record = dict(zip(headers,row))
+            nshares = int(record['shares'])
+            price = float(record['price']) 
             total_buy_in += nshares * price 
         print(total_buy_in)
 
@@ -64,7 +67,7 @@ print(earn)
 
 def make_report(portfolio, now_prices):
     all_change = []
-    per_stock = ()  # Create a list, shouldn't been in for loop!!!!!
+    per_stock = ()  # Create a list, shouldn't be in for loop!!!!!
     for s in portfolio:
         change = now_prices[s['name']] - s['price']  # Calculate the change
         per_stock = s['name'], s['shares'], now_prices[s['name']], change
